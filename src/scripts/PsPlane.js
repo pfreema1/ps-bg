@@ -74,7 +74,7 @@ export default class PsPlane {
       window.innerHeight
     );
 
-    return dim.width + 2.0;
+    return dim.width + 4.0;
   }
 
   update(time) {
