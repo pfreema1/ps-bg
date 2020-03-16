@@ -31,7 +31,7 @@ export default class WebGLView {
     this.initThree();
     this.initBgScene();
     this.initLights();
-    this.initTweakPane();
+    // this.initTweakPane();
     this.setupTextCanvas();
     this.initMouseMoveListen();
     this.initMouseCanvas();
@@ -93,23 +93,23 @@ export default class WebGLView {
 
     this.composer.addPass(new RenderPass(this.scene, this.camera));
 
-    const bloomPass = new BloomPass(
-      2, // strength
-      25, // kernel size 25
-      4, // sigma ? 4
-      256 // blur render target resolution
-    );
-    // bloomPass.renderToScreen = true;
-    this.composer.addPass(bloomPass);
+    // const bloomPass = new BloomPass(
+    //   2, // strength
+    //   25, // kernel size 25
+    //   4, // sigma ? 4
+    //   256 // blur render target resolution
+    // );
+    // // bloomPass.renderToScreen = true;
+    // this.composer.addPass(bloomPass);
 
-    const filmPass = new FilmPass(
-      0.0, // noise intensity
-      0.0, // scanline intensity
-      648, // scanline count
-      false // grayscale
-    );
-    filmPass.renderToScreen = true;
-    this.composer.addPass(filmPass);
+    // const filmPass = new FilmPass(
+    //   0.0, // noise intensity
+    //   0.0, // scanline intensity
+    //   648, // scanline count
+    //   false // grayscale
+    // );
+    // filmPass.renderToScreen = true;
+    // this.composer.addPass(filmPass);
   }
 
   initTweakPane() {
