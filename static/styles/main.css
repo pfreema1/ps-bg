@@ -1,5 +1,10 @@
 body {
-	background-color: #222;
-	margin: 0;
-	overflow: hidden;
+  background: rgb(62, 15, 57);
+  background: linear-gradient(
+    0deg,
+    rgba(62, 15, 57, 1) 0%,
+    rgba(3, 0, 3, 1) 100%
+  );
+  margin: 0;
+  overflow: hidden;
 }
