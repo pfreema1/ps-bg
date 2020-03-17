@@ -13,8 +13,9 @@ vec3 orthogonal(vec3 v) {
 
 // Any function can go here to distort p
 vec3 distorted(vec3 p) {
+  float mainWaveAmp = 0.7;
   // main wave
-  p.z += sin((u_time * 2.0 + p.x) * 0.75) * 0.7;
+  p.z += sin((u_time * 2.0 + p.x) * 0.75) * mainWaveAmp;
 
   p.z += sin((u_time + p.y) * 6.0) * 0.1;
 
