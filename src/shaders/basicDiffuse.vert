@@ -4,6 +4,7 @@
 varying vec3 vNormal;
 varying vec3 fragPos;
 uniform float u_time;
+uniform vec2 mouse;
 attribute float positionIndex;
 
 vec3 orthogonal(vec3 v) {
@@ -11,15 +12,21 @@ vec3 orthogonal(vec3 v) {
   : vec3(0.0, -v.z, v.y));
 }
 
+float map(float value, float min1, float max1, float min2, float max2) {
+  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+}
+
 // Any function can go here to distort p
 vec3 distorted(vec3 p) {
-  float mainWaveAmp = 0.7;
+  float speed = u_time;
+
+  float mainWaveAmp = 0.7 * map(mouse.x, -1.0, 1.0, 0.5, 2.0);
   // main wave
-  p.z += sin((u_time * 2.0 + p.x) * 0.75) * mainWaveAmp;
+  p.z += sin((speed * 2.0 + p.x) * 0.75) * mainWaveAmp;
 
-  p.z += sin((u_time + p.y) * 6.0) * 0.1;
+  p.z += sin((speed + p.y) * 6.0) * 0.1;
 
-  p.z += sin((u_time + p.y) * 2.0) * 0.2 * sin((u_time + p.x) * 1.5);
+  p.z += sin((speed + p.y) * 2.0) * 0.2 * sin((speed + p.x) * 1.5);
   return p;
 }
 

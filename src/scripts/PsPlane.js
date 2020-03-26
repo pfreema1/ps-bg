@@ -30,6 +30,9 @@ export default class PsPlane {
         u_lightColor: { value: new THREE.Vector3(1.0, 1.0, 1.0) },
         u_lightPos: {
           value: new THREE.Vector3(-3.0, 1.0, 3.0)
+        },
+        mouse: {
+          value: null
         }
       },
       vertexShader: glslify(basicDiffuseVert),
@@ -40,7 +43,7 @@ export default class PsPlane {
     // this.mat.blending = THREE.AdditiveBlending;
 
     this.mesh = new THREE.Mesh(this.geo, this.mat);
-
+    this.mesh.position.x = -4;
     this.mesh.rotation.x -= Math.PI * 0.4;
     console.log(this.mesh);
 
@@ -77,8 +80,9 @@ export default class PsPlane {
     return dim.width + 4.0;
   }
 
-  update(time) {
+  update(time, mouse) {
     this.mat.uniforms.u_time.value = time;
+    this.mat.uniforms.mouse.value = mouse;
     return;
 
     // go through vertices and reposition them

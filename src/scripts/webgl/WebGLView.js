@@ -95,7 +95,7 @@ export default class WebGLView {
 
     const bloomPass = new BloomPass(
       1.5, // strength
-      25, // kernel size 25
+      20, // kernel size 25
       4, // sigma ? 4
       256 // blur render target resolution
     );
@@ -120,7 +120,7 @@ export default class WebGLView {
         min: 0.0,
         max: 0.5
       })
-      .on('change', value => {});
+      .on('change', value => { });
   }
 
   initMouseCanvas() {
@@ -133,10 +133,14 @@ export default class WebGLView {
     this.height = window.innerHeight;
 
     window.addEventListener('mousemove', ({ clientX, clientY }) => {
-      this.mouse.x = clientX; //(clientX / this.width) * 2 - 1;
-      this.mouse.y = clientY; //-(clientY / this.height) * 2 + 1;
+      TweenMax.to(this.mouse, 1.0, {
+        x: (clientX / this.width) * 2 - 1,
+        y: -(clientY / this.height) * 2 + 1
+      });
+      // this.mouse.x = (clientX / this.width) * 2 - 1;
+      // this.mouse.y = -(clientY / this.height) * 2 + 1;
 
-      this.mouseCanvas.addTouch(this.mouse);
+      // this.mouseCanvas.addTouch(this.mouse);
     });
   }
 
@@ -236,7 +240,7 @@ export default class WebGLView {
     }
 
     if (this.psPlane) {
-      this.psPlane.update(time);
+      this.psPlane.update(time, this.mouse);
     }
 
     if (this.particles) {
